@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>My To-Do List</h1>
+  <form action="/add" method="POST">
+    <input type="text" name="task" placeholder="New task..." required>
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    {% for idx, item in enumerate(tasks) %}
+      <li class="{{ 'done' if item.done else '' }}">
+        {{ item.task }}
+        <a href="/complete/{{ idx }}">✔</a>
+        <a href="/delete/{{ idx }}">🗑</a>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
